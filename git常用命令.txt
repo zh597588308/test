@@ -11,7 +11,7 @@ git pull git@github.com:zh597588308/test.git master
 git add .
 git commit -m 'localhost test zh597588308'
 
-2.3 选择路径
+2.3 选择路径(只需要一次，第二次不需要)
 git remote add origin git@github.com:zh597588308/test.git
 or
 git remote add origin https://github.com/zh597588308/test.git

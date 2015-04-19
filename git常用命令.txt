@@ -1,4 +1,4 @@
-1. µÚÒ»´ÎÊ¹ÓÃÅäÖÃ£º
+1. ç¬¬ä¸€æ¬¡ä½¿ç”¨é…ç½®ï¼š
 
 	git config --global user.name "zh597588308"
 
@@ -8,23 +8,23 @@
 
 	ssh -T git@github.com
 
-2.ÏÂÔØ£º
+2.ä¸‹è½½ï¼š
 	git pull git@github.com:zh597588308/test.git master
 
-3.ÉÏ´«£º
+3.ä¸Šä¼ ï¼š
 
-	3.1 ÏÂÔØ£º
+	3.1 ä¸‹è½½ï¼š
 		git init
 		git pull git@github.com:zh597588308/test.git master
 
-	3.2 ĞŞ¸ÄÌá½»±¾µØ
+	3.2 ä¿®æ”¹æäº¤æœ¬åœ°
 		git add .
 		git commit -m 'localhost test zh597588308'
 
-	3.3 Ñ¡ÔñÂ·¾¶(Ö»ĞèÒªÒ»´Î£¬µÚ¶ş´Î²»ĞèÒª)
+	3.3 é€‰æ‹©è·¯å¾„(åªéœ€è¦ä¸€æ¬¡ï¼Œç¬¬äºŒæ¬¡ä¸éœ€è¦)
 		git remote add origin git@github.com:zh597588308/test.git
 		or
 		git remote add origin https://github.com/zh597588308/test.git
 
-	3.4 Ìá½»
+	3.4 æäº¤
 		git push origin

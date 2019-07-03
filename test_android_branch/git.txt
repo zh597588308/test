@@ -1,0 +1,345 @@
+
+1.远程拉代码到本地
+git clone http://github.com/zh597588308/android_test_branch
+git checkout -b v1.0  remotes/origin/v1.0
+
+2.本地修改代码上传
+git add -A
+git commit -m ""
+git push http://github.com/zh597588308/android_test_branch
+
+3.创建本地分支，上传到远程分支
+git checkout -b v2.0
+git push origin v2.0:v2.0
+
+4.删除远程分支remotes/origin/remotes/origin/v2.0
+git branch -r -d origin/remotes/origin/v2.0
+git push origin :remotes/origin/v2.0
+
+5.确认删除远程分支
+git branch -r -d origin/v2.0
+git push origin :v2.0
+
+6.本地v1.0没有a.c,远程v1.0有a.c
+我要将本地分支和远程分支同步起来。
+方法1：
+git fetch
+git merge origin/v1.0
+
+git pull origin
+
+7.融合出错后修改，创建v1.0版本
+git rm -rf b.c
+git add -A
+git commit -m "create v1.0 version"
+git push origin v1.0:v1.0
+
+v1.0版本创建完成
+
+8.仅查看branch v2.0的log
+git log v2.0 --oneline
+发现v2.0多提交了版本v2.1
+我想返回v2.0版本，并且提交此版本到远程分支
+git reset --hard 36d138b
+git push origin v2.0:v2.0 -f
+
+一步一步回退：
+git revert 36d138b
+
+git reset --hard HEAD^
+
+9. 强制回退版本，一般不使用。
+git push origin v2.0:v2.0 -f
+
+10.实战，将nxp的代码拉下了
+
+nxp代码地址
+
+
+https://github.com/NXPNFCProject
+ 过铃  2016-07-19 11:40:01
+HAL include： h3aNXPNFC_Reference
+ 过铃  2016-07-19 11:40:39
+JCOP library：h3aNXPNFC_P61_JCOP_Kit
+ 过铃  2016-07-19 11:41:20
+NFC stack library: h3aNFC_NCIHAL_libnfc-nci
+ 过铃  2016-07-19 11:41:31
+NFC framework : h3aNFC_NCIHAL_base
+ 过铃  2016-07-19 11:41:46
+NFC I2C Driver: h3aNXPNFC_I2CDriver
+ 过铃  2016-07-19 11:42:01
+SE SPI Driver: h3aNXPESE_SPIDriver
+ 过铃  2016-07-19 11:42:12
+NFC Service: h3aNFC_NCIHAL_Nfc
+ 过铃  2016-07-19 11:42:27
+NFCC FW: h3aNXPNFCC_FW
+ 过铃  2016-07-19 11:42:41
+Test APK: h3aNXPAndroidDTA
+
+
+   37  git checkout -b v2.0
+   38  git branch
+   42  git log
+   43  git branch -a
+   44  git status
+   45  git checkout v1.0
+   46  git status
+   47  git branch -a
+   49  git ls
+   50  git log
+   51  git checkout v2.0
+   52  git log
+   54  git status
+   55  git add -A
+   56  git status
+   57  git push  http://github.com/zh597588308/android_test_branch
+   58  git log
+   59  git branch -a
+   60  git push origin v2.0:remotes/origin/v2.0
+   61  git branch -a
+   62  git branch -r -d remotes/origin/remotes/origin/v2.0
+   63  git branch -r -d remotes/origin/v2.0
+   64  git branch -r
+   65  git branch -r -d origin/remotes/origin/v2.0
+   66  git branch -r -d origin/v2.0
+   67  git branch -a
+   68  git push origin :origin/remotes/origin/v2.0
+   69  git push origin :remotes/origin/v2.0
+   70  git push origin :remotes/origin/v2.0
+   71  git branch -a
+   72  git push origin v2.0:v2.0
+   73  git branch -a
+   74  git branch -d remote/origin/v2.0
+   75  git branch -r -d v2.0
+   76  git branch -r -d origin/v2.0
+   77  git push origin v2.0:v2.0
+   78  git branch -a
+   79  git branch -a -d remotes/origin/v2.0
+   80  git branch -r -d origin/v2.0
+   81  git branch -a
+   82  git push origin :v2.0
+   83  git push origin v2.0:v2.0
+   84  git branch -a
+   89  git add -A
+   90  git commit -m "change file v2.0->v2.1"
+   92  git diff
+   93  git log
+   95  git push origin v2.0:v2.0
+   96  git branch -a
+   98  git checkout v1.0
+  100  git branch -a
+  103  git status
+  106  git status
+  107  git add -A
+  108  git status
+  109  git commit -m "change file a.c and add file v1.c"
+  110  git push v1.0:v1.0
+  111  git branch -a
+  112  git push origin v1.0:v1.0
+  114  git log
+  115  git branch -a
+  116  git sync
+  117  git checkout -b master
+  118  git checkout master
+  119  git log
+  120  git
+  122  git branch -a
+  123  git branch -d v1.0
+  124  git branch -D v1.0
+  125  git branch
+  126  git branch -a
+  127  git branch -a
+  128  git checkout v1.0 remotes/origin/v1.0
+  129  git checkout -b v1.0 remotes/origin/v1.0
+  130  git branch -a
+  132  git update
+  133  git update-ref
+  134  git fetch
+  135  git branch -a
+  137  git diff v1.0 origin/v1.0
+  138  git fetch -b v1.0 remotes/origin/v1.0
+  139  git checkout -b v1.0 remotes/origin/v1.0
+  140  git merge origin/v1.0
+  142  git branch -a
+  144  git merge origin/master
+  145  git merge
+  146  git merge origin/v1.0
+  147  git merge origin/v2.0
+  149  git branch -a
+  151  git merge origin/v2.0:v2.0
+  152  git clean
+  153  git status
+  155  git branch -a
+  160  git status
+  161  git rm -rf b.c
+  165  git add -A
+  166  git commit -m "create v1.0 version"
+  167  git push origin v1.0:v1.0
+  168  git branch -a
+  169  git log
+  170  git log --oneline
+  171  git branch
+  172  git log v1.0 --oneline
+  173  git branch
+  175  git log v2.0 --oneline
+  176  git log master --oneline
+  177  git log --oneline
+  178  git log -a --oneline
+  179  git branch -a
+  180  git checkout -b v2.0
+  181  git checkout v2.0
+  183  git branch -a
+  185  git log
+  186  git log remotes/origin/v2.0
+  187  git branch
+  188  git log --oneline
+  189  git reset 36d138b
+  190  git reset --hard 36d138b
+  193  git status
+  194  git branch
+  195  git branch -a
+  196  git push  origin v2.0:v2.0
+  197  git log --oneline
+  198  git fetch
+  199  git log
+  200  git log --one lint
+  201  git log --oneline
+  203  git branch -a
+  204  git pull origin
+  205  git pull origin
+  206  git pull origin v2.0
+  207  git branch
+  210  git branch
+  211  git log
+  212  git revert 36d138b
+  215  git status
+  216  git log
+  217  git branch -a
+  218  git pull v2.0
+  220  git branch v1.0
+  221  git checkout v1.0
+  222  git add -A
+  223  git status
+  224  git log
+  226  git checkout v1.0
+  228  git branch -a
+  229  git branch -d v2.0
+  230  git branch -a
+  231  git fetch remotes/origin/v2.0
+  232  git branch
+  233  git fetch origin/v2.0
+  234  git fetch v2.0
+  235  git branch -b v2.0:v2.0
+  236  git branch -b v2.0 origin/v2.0
+  237  git checkout -b v2.0  remotes/origin/v2.0
+  238  git branch 
+  241  git log
+  242  git status
+  243  git  revert 36d138b
+  244  git log
+  245  git log --oneline
+  246  git revert f7cc1a7
+  247  git status
+  248  git add -A
+  250  git status
+  251  git log
+  252  git revert f7cc1a7
+  253  git log
+  254  git log --oneline
+  256  git revert 36d138b
+  257  git log
+  258  git log --oneline
+  259  git reset -hard commit b968360
+  260  git reset -hard commit (b968360)
+  261  git reset -hard commit(b968360)
+  262  git reset --hard commit b968360
+  263  git reset --hard b968360
+  264  git log --oneline
+  265  git reset --hard 36d138b
+  266  git log --oneline
+  268  git branch -a
+  269  git log  remotes/origin/v2.0
+  270  git push origin v2.0:2.0 -f
+  272  git log  remotes/origin/v2.0 --oneline
+  273  git log --oneline
+  274  git fetch
+  275  git log  remotes/origin/v2.0 --oneline
+  276  git log --oneline
+  278  git branch -a
+  279  git branch -r -d origin/2.0
+  280  git push origin :2.0
+  281  git branch -a
+  282  git push origin v2.0:v2.0 -f
+  283  git log --oneline
+  284  git log  remotes/origin/v2.0 --oneline
+  293  git add -A
+  295  git log
+  296  git log --oneline
+  297  git reset --soft 36d138b
+  298  git status
+  299  git add -A
+  300  git status
+  304  git log
+  308  git status
+  309  git add -A
+  310  git commit -m "add new file b.c"
+  311  git push origin v2.0:v2.0
+  313  git branch
+  316  git branch -a
+  317  git checkout v1.0
+  318  git log
+  319  git log --oneline
+  321  git checkout v2.0
+  322  git log --oneline
+  323  git checkout -b v3.0 v3.0
+  324  git branch
+  325  git checkout -b v3.0 v2.0
+  326  git branch
+  334  git add -A
+  335  git status
+  336  git commit -m "modified a.c , deleted b.c , new file c.c"
+  337  git branch -a
+  338  git push origin v3.0:v3.0
+  339  git branch -a
+  340  git log
+  341  git log -a
+  342  git log --oneline
+  345  git checkout v1.0
+  346  git
+  349  git checkout v2.0
+  351  git checkout v3.0
+  354  git checkout v2.0
+  356  git fetch
+  357  git branch
+  358  git log --oneline
+  359  git checkout v3.0
+  360  git log --oneline
+  361  git branch
+  363  git checkout master
+  364  git log --oneline
+  368  git status
+  369  git merge origin/v1.0
+  371  git status
+  372  git log --oneline
+  375  git merge origin/v2.0
+  380  git branch
+  381  git checkout v2.0
+  384  git checkout master
+  385  git log --oneline
+  387  git branch
+  390  git checkout v2.0
+  392  git checkout master
+  393  git status
+  394  git log -oneline
+  395  git log --oneline
+  396  git remote origin/v3.0
+  397  git merge origin/v3.0
+  400  git status
+  401  git merge
+  402  git add -A
+  403  git status
+  404  git commit -m "merge v3.0 to master"
+  405  git log --oneline
+  413  git clone http://github.com/NXPNFCProject/NXPNFC_Reference.git
+  415  history|grep "git"
+  416  history|grep "git" > ../git.txt
